@@ -25,7 +25,18 @@ namespace NNPTPZ1
     {
         static void Main(string[] args)
         {
-            FractalSettings settings = ArgumentParser.Parse(args);
+            FractalSettings settings;
+            try
+            {
+                settings = ArgumentParser.Parse(args);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                Console.Error.WriteLine(ArgumentParser.Usage);
+                Environment.ExitCode = 1;
+                return;
+            }
             // TODO: add parameters from args?
             using (Bitmap bmp = new Bitmap(settings.Width, settings.Height))
             {
