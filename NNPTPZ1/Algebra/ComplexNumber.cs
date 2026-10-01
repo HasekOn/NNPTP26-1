@@ -22,6 +22,14 @@ namespace NNPTPZ1.Algebra
             return base.Equals(obj);
         }
 
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Real.GetHashCode() * 397) ^ Imaginary.GetHashCode();
+            }
+        }
+
         public readonly static ComplexNumber Zero = new ComplexNumber()
         {
             Real = 0,
@@ -30,32 +38,29 @@ namespace NNPTPZ1.Algebra
 
         public ComplexNumber Multiply(ComplexNumber b)
         {
-            ComplexNumber a = this;
             // aRe*bRe + aRe*bIm*i + aIm*bRe*i + aIm*bIm*i*i
             return new ComplexNumber()
             {
-                Real = a.Real * b.Real - a.Imaginary * b.Imaginary,
-                Imaginary = (float)(a.Real * b.Imaginary + a.Imaginary * b.Real)
+                Real = Real * b.Real - Imaginary * b.Imaginary,
+                Imaginary = (float)(Real * b.Imaginary + Imaginary * b.Real)
             };
         }
 
         public ComplexNumber Add(ComplexNumber b)
         {
-            ComplexNumber a = this;
             return new ComplexNumber()
             {
-                Real = a.Real + b.Real,
-                Imaginary = a.Imaginary + b.Imaginary
+                Real = Real + b.Real,
+                Imaginary = Imaginary + b.Imaginary
             };
         }
 
         public ComplexNumber Subtract(ComplexNumber b)
         {
-            ComplexNumber a = this;
             return new ComplexNumber()
             {
-                Real = a.Real - b.Real,
-                Imaginary = a.Imaginary - b.Imaginary
+                Real = Real - b.Real,
+                Imaginary = Imaginary - b.Imaginary
             };
         }
 
@@ -69,7 +74,7 @@ namespace NNPTPZ1.Algebra
             // (aRe + aIm*i) / (bRe + bIm*i)
             // ((aRe + aIm*i) * (bRe - bIm*i)) / ((bRe + bIm*i) * (bRe - bIm*i))
             //  bRe*bRe - bIm*bIm*i*i
-            var numerator = this.Multiply(new ComplexNumber() { Real = b.Real, Imaginary = -b.Imaginary });
+            var numerator = Multiply(new ComplexNumber() { Real = b.Real, Imaginary = -b.Imaginary });
             var denominator = b.Real * b.Real + b.Imaginary * b.Imaginary;
 
             return new ComplexNumber()

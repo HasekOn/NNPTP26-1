@@ -8,9 +8,9 @@ namespace NNPTPZ1.Algebra.Tests
         private static Polynomial CreateOnePlusXSquared()
         {
             Polynomial polynomial = new Polynomial();
-            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
-            polynomial.Coefficients.Add(new ComplexNumber() { Real = 0, Imaginary = 0 });
-            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
+            polynomial.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
+            polynomial.Add(new ComplexNumber() { Real = 0, Imaginary = 0 });
+            polynomial.Add(new ComplexNumber() { Real = 1, Imaginary = 0 });
             return polynomial;
         }
 

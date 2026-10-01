@@ -7,15 +7,15 @@ namespace NNPTPZ1.Algebra
     /// </summary>
     public class Polynomial
     {
+        private readonly List<ComplexNumber> coefficients = new List<ComplexNumber>();
+
         /// <summary>
         /// Coefficients ordered from the constant term up to the highest power.
         /// </summary>
-        public List<ComplexNumber> Coefficients { get; set; }
-
-        public Polynomial() => Coefficients = new List<ComplexNumber>();
+        public IReadOnlyList<ComplexNumber> Coefficients => coefficients;
 
         public void Add(ComplexNumber coefficient) =>
-            Coefficients.Add(coefficient);
+            coefficients.Add(coefficient);
 
         /// <summary>
         /// Creates the derivative of this polynomial.
@@ -24,9 +24,9 @@ namespace NNPTPZ1.Algebra
         public Polynomial Derivative()
         {
             Polynomial derivative = new Polynomial();
-            for (int power = 1; power < Coefficients.Count; power++)
+            for (int power = 1; power < coefficients.Count; power++)
             {
-                derivative.Coefficients.Add(Coefficients[power].Multiply(new ComplexNumber() { Real = power }));
+                derivative.Add(coefficients[power].Multiply(new ComplexNumber() { Real = power }));
             }
 
             return derivative;
@@ -40,9 +40,9 @@ namespace NNPTPZ1.Algebra
         public ComplexNumber ValueAt(ComplexNumber x)
         {
             ComplexNumber sum = ComplexNumber.Zero;
-            for (int power = 0; power < Coefficients.Count; power++)
+            for (int power = 0; power < coefficients.Count; power++)
             {
-                ComplexNumber term = Coefficients[power];
+                ComplexNumber term = coefficients[power];
                 ComplexNumber xPower = x;
 
                 if (power > 0)
@@ -66,17 +66,14 @@ namespace NNPTPZ1.Algebra
         public override string ToString()
         {
             string result = "";
-            for (int power = 0; power < Coefficients.Count; power++)
+            for (int power = 0; power < coefficients.Count; power++)
             {
-                result += Coefficients[power];
-                if (power > 0)
+                result += coefficients[power];
+                for (int j = 0; j < power; j++)
                 {
-                    for (int j = 0; j < power; j++)
-                    {
-                        result += "x";
-                    }
+                    result += "x";
                 }
-                if (power + 1 < Coefficients.Count)
+                if (power + 1 < coefficients.Count)
                     result += " + ";
             }
             return result;

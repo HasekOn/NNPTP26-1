@@ -9,6 +9,10 @@ namespace NNPTPZ1.Rendering
     /// </summary>
     public class NewtonIteration
     {
+        private const int MaxIterations = 30;
+        private const double ConvergenceThreshold = 0.5;
+        private const double RootMatchTolerance = 0.01;
+
         private readonly List<ComplexNumber> roots = new List<ComplexNumber>();
 
         public NewtonIteration(Polynomial polynomial)
@@ -23,12 +27,12 @@ namespace NNPTPZ1.Rendering
         public ComplexNumber Solve(ComplexNumber z, out float iterationCount)
         {
             iterationCount = 0;
-            for (int iteration = 0; iteration < 30; iteration++)
+            for (int iteration = 0; iteration < MaxIterations; iteration++)
             {
                 var step = Polynomial.ValueAt(z).Divide(Derivative.ValueAt(z));
                 z = z.Subtract(step);
 
-                if (Math.Pow(step.Real, 2) + Math.Pow(step.Imaginary, 2) >= 0.5)
+                if (Math.Pow(step.Real, 2) + Math.Pow(step.Imaginary, 2) >= ConvergenceThreshold)
                 {
                     iteration--;
                 }
@@ -44,7 +48,7 @@ namespace NNPTPZ1.Rendering
             var rootIndex = 0;
             for (int i = 0; i < roots.Count; i++)
             {
-                if (Math.Pow(z.Real - roots[i].Real, 2) + Math.Pow(z.Imaginary - roots[i].Imaginary, 2) <= 0.01)
+                if (Math.Pow(z.Real - roots[i].Real, 2) + Math.Pow(z.Imaginary - roots[i].Imaginary, 2) <= RootMatchTolerance)
                 {
                     found = true;
                     rootIndex = i;

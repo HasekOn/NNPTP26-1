@@ -7,6 +7,8 @@ namespace NNPTPZ1.Rendering
 {
     public class FractalRenderer
     {
+        private const double ZeroReplacement = 0.0001;
+
         private readonly RenderOptions options;
         private readonly ColorPalette palette;
 
@@ -22,10 +24,10 @@ namespace NNPTPZ1.Rendering
             double yStep = (options.YMax - options.YMin) / options.Height;
 
             Polynomial polynomial = new Polynomial();
-            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1 });
-            polynomial.Coefficients.Add(ComplexNumber.Zero);
-            polynomial.Coefficients.Add(ComplexNumber.Zero);
-            polynomial.Coefficients.Add(new ComplexNumber() { Real = 1 });
+            polynomial.Add(new ComplexNumber() { Real = 1 });
+            polynomial.Add(ComplexNumber.Zero);
+            polynomial.Add(ComplexNumber.Zero);
+            polynomial.Add(new ComplexNumber() { Real = 1 });
             NewtonIteration newton = new NewtonIteration(polynomial);
 
             Console.WriteLine(newton.Polynomial);
@@ -47,9 +49,9 @@ namespace NNPTPZ1.Rendering
                     };
 
                     if (z.Real == 0)
-                        z.Real = 0.0001;
+                        z.Real = ZeroReplacement;
                     if (z.Imaginary == 0)
-                        z.Imaginary = 0.0001f;
+                        z.Imaginary = (float)ZeroReplacement;
 
                     // find solution of equation using newton's iteration
                     z = newton.Solve(z, out float iterationCount);
