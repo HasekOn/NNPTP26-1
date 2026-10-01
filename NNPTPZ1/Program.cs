@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using NNPTPZ1.Configuration;
+using NNPTPZ1.Rendering;
 
 namespace NNPTPZ1
 {
@@ -11,10 +13,10 @@ namespace NNPTPZ1
     {
         static void Main(string[] args)
         {
-            FractalSettings settings;
+            RenderOptions options;
             try
             {
-                settings = ArgumentParser.Parse(args);
+                options = ArgumentParser.Parse(args);
             }
             catch (ArgumentException ex)
             {
@@ -23,12 +25,12 @@ namespace NNPTPZ1
                 Environment.ExitCode = 1;
                 return;
             }
-            using (Bitmap bmp = new Bitmap(settings.Width, settings.Height))
+            using (Bitmap bitmap = new Bitmap(options.Width, options.Height))
             {
-                NewtonFractalRenderer renderer = new NewtonFractalRenderer(settings, new ColorPalette());
-                renderer.Render(bmp);
+                FractalRenderer renderer = new FractalRenderer(options, new ColorPalette());
+                renderer.Render(bitmap);
 
-                bmp.Save(settings.OutputPath);
+                bitmap.Save(options.OutputPath);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NNPTPZ1
+namespace NNPTPZ1.Configuration
 {
     public static class ArgumentParser
     {
@@ -8,7 +8,7 @@ namespace NNPTPZ1
 
         private const int ExpectedArgumentCount = 7;
 
-        public static FractalSettings Parse(string[] args)
+        public static RenderOptions Parse(string[] args)
         {
             int argumentCount = args == null ? 0 : args.Length;
             if (argumentCount < ExpectedArgumentCount)
@@ -41,7 +41,7 @@ namespace NNPTPZ1
                 throw new ArgumentException($"Argument <ymin> must be less than <ymax>, but was {yMin} >= {yMax}.");
             }
 
-            return new FractalSettings(width, height, xMin, xMax, yMin, yMax, output);
+            return new RenderOptions(width, height, xMin, xMax, yMin, yMax, output);
         }
 
         private static int ParseInt(string value, string name)

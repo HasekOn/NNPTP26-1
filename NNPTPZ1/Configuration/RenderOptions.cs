@@ -1,8 +1,8 @@
-﻿namespace NNPTPZ1
+﻿namespace NNPTPZ1.Configuration
 {
-    public class FractalSettings
+    public class RenderOptions
     {
-        public FractalSettings(int width, int height, double xMin, double xMax, double yMin, double yMax, string outputPath)
+        public RenderOptions(int width, int height, double xMin, double xMax, double yMin, double yMax, string outputPath)
         {
             Width = width;
             Height = height;

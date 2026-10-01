@@ -56,8 +56,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ArgumentParserTests.cs" />
-    <Compile Include="CplxTests.cs" />
+    <Compile Include="Algebra\ComplexNumberTests.cs" />
+    <Compile Include="Algebra\PolynomialTests.cs" />
+    <Compile Include="Configuration\ArgumentParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace NNPTPZ1.Tests
+namespace NNPTPZ1.Configuration.Tests
 {
     [TestClass]
     public class ArgumentParserTests
@@ -17,15 +17,15 @@ namespace NNPTPZ1.Tests
         {
             string[] args = ValidArguments();
 
-            FractalSettings settings = ArgumentParser.Parse(args);
+            RenderOptions options = ArgumentParser.Parse(args);
 
-            Assert.AreEqual(300, settings.Width);
-            Assert.AreEqual(200, settings.Height);
-            Assert.AreEqual(-2.0, settings.XMin);
-            Assert.AreEqual(1.0, settings.XMax);
-            Assert.AreEqual(-1.0, settings.YMin);
-            Assert.AreEqual(3.0, settings.YMax);
-            Assert.AreEqual("out.png", settings.OutputPath);
+            Assert.AreEqual(300, options.Width);
+            Assert.AreEqual(200, options.Height);
+            Assert.AreEqual(-2.0, options.XMin);
+            Assert.AreEqual(1.0, options.XMax);
+            Assert.AreEqual(-1.0, options.YMin);
+            Assert.AreEqual(3.0, options.YMax);
+            Assert.AreEqual("out.png", options.OutputPath);
         }
 
         [TestMethod]
@@ -35,10 +35,10 @@ namespace NNPTPZ1.Tests
             args[2] = (-1.5).ToString(CultureInfo.CurrentCulture);
             args[3] = 1.5.ToString(CultureInfo.CurrentCulture);
 
-            FractalSettings settings = ArgumentParser.Parse(args);
+            RenderOptions options = ArgumentParser.Parse(args);
 
-            Assert.AreEqual(-1.5, settings.XMin);
-            Assert.AreEqual(1.5, settings.XMax);
+            Assert.AreEqual(-1.5, options.XMin);
+            Assert.AreEqual(1.5, options.XMax);
         }
 
         [TestMethod]
@@ -46,9 +46,9 @@ namespace NNPTPZ1.Tests
         {
             string[] args = new[] { "300", "200", "-2", "1", "-1", "3", "out.png", "extra" };
 
-            FractalSettings settings = ArgumentParser.Parse(args);
+            RenderOptions options = ArgumentParser.Parse(args);
 
-            Assert.AreEqual("out.png", settings.OutputPath);
+            Assert.AreEqual("out.png", options.OutputPath);
         }
 
         [DataTestMethod]
