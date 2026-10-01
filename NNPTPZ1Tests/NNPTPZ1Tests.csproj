@@ -67,7 +67,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NNPTPZ1\NNPTPZ1.csproj">
       <Project>{3c0fd8c9-b6bd-4b7b-ac9a-08540d360d54}</Project>
-      <Name>INPTPZ1</Name>
+      <Name>NNPTPZ1</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

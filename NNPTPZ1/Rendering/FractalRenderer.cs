@@ -34,18 +34,18 @@ namespace NNPTPZ1.Rendering
             Console.WriteLine(newton.Derivative);
 
             // for every pixel in image...
-            for (int i = 0; i < options.Width; i++)
+            for (int y = 0; y < options.Height; y++)
             {
-                for (int j = 0; j < options.Height; j++)
+                for (int x = 0; x < options.Width; x++)
                 {
                     // find "world" coordinates of pixel
-                    double y = options.YMin + i * yStep;
-                    double x = options.XMin + j * xStep;
+                    double imaginary = options.YMin + y * yStep;
+                    double real = options.XMin + x * xStep;
 
                     ComplexNumber z = new ComplexNumber()
                     {
-                        Real = x,
-                        Imaginary = (float)(y)
+                        Real = real,
+                        Imaginary = (float)(imaginary)
                     };
 
                     if (z.Real == 0)
@@ -60,7 +60,7 @@ namespace NNPTPZ1.Rendering
                     var rootIndex = newton.FindRootIndex(z);
 
                     // colorize pixel according to root number
-                    bitmap.SetPixel(j, i, palette.GetColor(rootIndex, iterationCount));
+                    bitmap.SetPixel(x, y, palette.GetColor(rootIndex, iterationCount));
                 }
             }
         }
