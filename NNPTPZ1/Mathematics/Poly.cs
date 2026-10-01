@@ -37,17 +37,6 @@ namespace NNPTPZ1.Mathematics
         /// </summary>
         /// <param name="x">point of evaluation</param>
         /// <returns>y</returns>
-        public Cplx Eval(double x)
-        {
-            var y = Eval(new Cplx() { Re = x, Imaginari = 0 });
-            return y;
-        }
-
-        /// <summary>
-        /// Evaluates polynomial at given point
-        /// </summary>
-        /// <param name="x">point of evaluation</param>
-        /// <returns>y</returns>
         public Cplx Eval(Cplx x)
         {
             Cplx s = Cplx.Zero;

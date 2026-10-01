@@ -12,12 +12,9 @@ namespace NNPTPZ1
 
         public Color GetColor(int id, float it)
         {
-            //int vv = id;
-            //int vv = id * 50 + (int)it*5;
             var vv = clrs[id % clrs.Length];
             vv = Color.FromArgb(vv.R, vv.G, vv.B);
             vv = Color.FromArgb(Math.Min(Math.Max(0, vv.R-(int)it*2), 255), Math.Min(Math.Max(0, vv.G - (int)it*2), 255), Math.Min(Math.Max(0, vv.B - (int)it*2), 255));
-            //vv = Math.Min(Math.Max(0, vv), 255);
             return vv;
         }
     }

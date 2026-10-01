@@ -47,10 +47,6 @@ namespace NNPTPZ1.Mathematics
                 Imaginari = a.Imaginari + b.Imaginari
             };
         }
-        public double GetAngleInDegrees()
-        {
-            return Math.Atan(Imaginari / Re);
-        }
         public Cplx Subtract(Cplx b)
         {
             Cplx a = this;
