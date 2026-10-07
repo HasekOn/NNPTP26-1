@@ -24,7 +24,7 @@ namespace NNPTPZ1.Rendering
         public Polynomial Polynomial { get; }
         public Polynomial Derivative { get; }
 
-        public ComplexNumber Solve(ComplexNumber z, out float iterationCount)
+        public ComplexNumber Solve(ComplexNumber z, out int iterationCount)
         {
             iterationCount = 0;
             for (int iteration = 0; iteration < MaxIterations; iteration++)

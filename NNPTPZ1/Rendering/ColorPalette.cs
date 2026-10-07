@@ -13,15 +13,15 @@ namespace NNPTPZ1.Rendering
             Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Fuchsia, Color.Gold, Color.Cyan, Color.Magenta
         };
 
-        public Color GetColor(int rootIndex, float iterationCount)
+        public Color GetColor(int rootIndex, int iterationCount)
         {
             var color = colors[rootIndex % colors.Length];
             return Color.FromArgb(Darken(color.R, iterationCount), Darken(color.G, iterationCount), Darken(color.B, iterationCount));
         }
 
-        private static int Darken(int component, float iterationCount)
+        private static int Darken(int component, int iterationCount)
         {
-            return Math.Min(Math.Max(0, component - (int)iterationCount * ShadeStepPerIteration), MaxColorComponent);
+            return Math.Min(Math.Max(0, component - iterationCount * ShadeStepPerIteration), MaxColorComponent);
         }
     }
 }

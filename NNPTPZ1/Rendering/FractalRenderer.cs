@@ -54,7 +54,7 @@ namespace NNPTPZ1.Rendering
                         z.Imaginary = (float)ZeroReplacement;
 
                     // find solution of equation using newton's iteration
-                    z = newton.Solve(z, out float iterationCount);
+                    z = newton.Solve(z, out int iterationCount);
 
                     // find solution root number
                     var rootIndex = newton.FindRootIndex(z);
