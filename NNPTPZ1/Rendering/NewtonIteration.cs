@@ -15,14 +15,14 @@ namespace NNPTPZ1.Rendering
 
         private readonly List<ComplexNumber> roots = new List<ComplexNumber>();
 
+        public Polynomial Polynomial { get; }
+        public Polynomial Derivative { get; }
+
         public NewtonIteration(Polynomial polynomial)
         {
             Polynomial = polynomial;
             Derivative = polynomial.Derivative();
         }
-
-        public Polynomial Polynomial { get; }
-        public Polynomial Derivative { get; }
 
         public ComplexNumber Solve(ComplexNumber z, out int iterationCount)
         {

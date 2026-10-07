@@ -7,6 +7,12 @@ namespace NNPTPZ1.Algebra
     /// </summary>
     public class ComplexNumber
     {
+        public readonly static ComplexNumber Zero = new ComplexNumber()
+        {
+            Real = 0,
+            Imaginary = 0
+        };
+
         public double Real { get; set; }
         public float Imaginary { get; set; }
 
@@ -29,12 +35,6 @@ namespace NNPTPZ1.Algebra
                 return (Real.GetHashCode() * 397) ^ Imaginary.GetHashCode();
             }
         }
-
-        public readonly static ComplexNumber Zero = new ComplexNumber()
-        {
-            Real = 0,
-            Imaginary = 0
-        };
 
         public ComplexNumber Multiply(ComplexNumber b)
         {
